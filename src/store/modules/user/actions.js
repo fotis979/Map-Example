@@ -11,7 +11,7 @@ import {AsyncStorage} from 'react-native';
  * @param {string} location
  * 
  */
-export const login = (userId: string, username: string, email: string , location: string   ) => {
+export const register = (userId: string, username: string, email: string , location: string   ) => {
   // async call 
 
   var data = {
@@ -56,7 +56,7 @@ export const login = (userId: string, username: string, email: string , location
    
 
         dispatch({
-          type: types.LOGIN,
+          type: types.REGISTER,
           payload: {
             userId: userId,
             username: username,
@@ -76,22 +76,6 @@ export const login = (userId: string, username: string, email: string , location
 
 
 
-setName = (value) => {
-  //AsyncStorage.setItem('name', value);
-  this.setState({ 'name': value });
-}
-
-export const addUserName = username => {
-  return {
-    type: types.LOGIN,
-    payload: {
-       
-      username: username,
-      
-       
-    }
-}
-}
 
  
 

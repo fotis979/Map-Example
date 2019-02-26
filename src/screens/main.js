@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { View, Text , StyleSheet} from 'react-native'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
-import { Login } from './login'
+import { Register } from './register'
 import Geolocation from './geolocation'
 import { Button } from '../components'
 import {AsyncStorage} from 'react-native'; 
 import { retrieveData } from '../store/modules/user/actions';
+ 
 
 
 /**
@@ -95,7 +96,7 @@ class App extends Component {
                 <View > 
                     <View style={styles.loginContainer}>
                         <View style={styles.formContainer}>
-                            <Login />                       
+                            <Register/>                      
                         </View>
                     </View>
                 </View>
@@ -107,7 +108,7 @@ class App extends Component {
           return (            
             <View style = {styles.container} >            
                 <Geolocation style = {styles.map}/>                
-                <Text style = {styles.boldText} >Welcome {this.state.username} !</Text> 
+                <Text style = {styles.userName} >Welcome {this.state.username} !</Text> 
             </View>
           
           )
@@ -128,13 +129,14 @@ const styles = StyleSheet.create ({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  boldText: {
-    position: 'absolute',
-    top: 10,
-    left: 10, 
-    fontSize: 20,
+  userName: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 15,
+    fontSize: 15,
     color: 'grey',
   },
+  
   map: {
     position: 'absolute',
     top: 0,

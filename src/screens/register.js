@@ -58,39 +58,37 @@ class App extends Component {
     return (
       
       <KeyboardAvoidingView behavior="padding" style={styles.container}>        
-        <TextInput style = {styles.input}
-            placeholder='User name'
-            placeholderTextColor='#fff'
-            onChangeText={username => this.setState({ username })}
-            value={this.state.username}
-        />
- 
-         <TextInput style = {styles.input}
-            keyboardType='email-address'
-            placeholder='Email'
-            placeholderTextColor='#fff'
-           onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <Button  style={styles.buttonContainer} 
-          onPress={() => {
- 
-           
-              if (this.state.username.trim() !== "" && this.state.email.trim() !== "" ){
-                this.state.id = String(Math.floor(Math.random() * 10000) + 1);
+            
+            <TextInput style = {styles.input}
+                placeholder='User name'
+                placeholderTextColor='#fff'
+                onChangeText={username => this.setState({ username })}
+                value={this.state.username}
+            />
+    
+            <TextInput style = {styles.input}
+                keyboardType='email-address'
+                placeholder='Email'
+                placeholderTextColor='#fff'
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+            />
+            <Button  style={styles.buttonContainer} 
+              onPress={() => {
+    
               
-                console.log("id "+ this.state.id);
-                console.log("Log save latitude "+this.state._latitude);
-                console.log("Log save longitude "+this.state._longitude);
-                doLogin(this.state.id, this.state.username.trim(), this.state.email.trim(),this.state.location)
-            }
-            else{
-                Alert.alert("Please enter the name and email to proceed");
-            }
-          }}
-        ><Text  style={styles.buttonText}>Register</Text>
-        </Button>
-         
+                  if (this.state.username.trim() !== "" && this.state.email.trim() !== "" ){
+                    this.state.id = String(Math.floor(Math.random() * 10000) + 1);              
+                    
+                    doRegister(this.state.id, this.state.username.trim(), this.state.email.trim(),this.state.location)
+                }
+                else{
+                    Alert.alert("Please enter the name and email to proceed");
+                }
+              }}
+            ><Text  style={styles.buttonText}>Register</Text>
+            </Button>
+            
         
       </KeyboardAvoidingView>
     )
@@ -99,8 +97,10 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    backgroundColor: '#37f'
+    padding: 50,   
+    top: 100,
+    justifyContent: "center",
+    
     },
     input:{
       height: 40,
@@ -125,7 +125,7 @@ buttonText:{
 /**
  * Login screen.
  */
-export const Login = connect(
+export const Register = connect(
 	
  
   (state: States) => ({
@@ -137,7 +137,7 @@ export const Login = connect(
  
   dispatch => ({
  
-    doLogin: (id, username, email, location) =>
-      dispatch(actions.user.login(id, username, email, location))
+    doRegister: (id, username, email, location) =>
+      dispatch(actions.user.register(id, username, email, location))
   })
 )(App)
