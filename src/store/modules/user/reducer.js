@@ -5,7 +5,10 @@ export type UserState = {
   loggedIn: boolean,
   userId: string,
   username: string,
-  email: string
+  email: string,
+  latitude: string,
+  longitude: string
+
   
 }
 
@@ -13,7 +16,9 @@ const initialState: UserState = {
   //loggedIn: false,
   userId: '',
   username: '',
-  email: ' '
+  email: '',
+  location: ''
+  
  
 }
 
@@ -25,7 +30,9 @@ export default handleActions(
         loggedIn: true,
         userId: p.userId,
         username: p.username,
-        email: p.email
+        email: p.email,
+        location: p.location
+        
         
       }
     },
