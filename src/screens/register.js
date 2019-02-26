@@ -88,7 +88,7 @@ class App extends Component {
               }}
             ><Text  style={styles.buttonText}>Register</Text>
             </Button>
-            
+        
         
       </KeyboardAvoidingView>
     )
@@ -97,9 +97,16 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 50,   
-    top: 100,
+    width: '100%',
+    flexDirection: 'column',
+    height: '100%',
+    backgroundColor: '#2980b6',
+    paddingLeft: 7.5,
+    paddingRight: 7.5,
+    paddingTop: 0,
+    paddingBottom: 7.5,
     justifyContent: "center",
+     
     
     },
     input:{
@@ -117,7 +124,8 @@ buttonText:{
     color: '#fff',
     textAlign: 'center',
     fontWeight: '700'
-}
+},
+ 
 })
 
  
