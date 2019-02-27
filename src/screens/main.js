@@ -3,16 +3,13 @@ import { View, Text , StyleSheet} from 'react-native'
 import { connect } from 'react-redux'
 import { actions, States } from '../store'
 import { Register } from './register'
-import Geolocation from './geolocation'
-import { Button } from '../components'
+import Geolocation from './geolocation' 
 import {AsyncStorage} from 'react-native'; 
-import { retrieveData } from '../store/modules/user/actions';
+ 
  
 
 
 /**
- * Main component. Display greeting when user is logged in,
- * otherwise it will display the login screen.
  * 
  * @class App
  * @extends {Component}
@@ -30,8 +27,6 @@ class App extends Component {
     error: null,
   };
 
-
- 
  
 
   componentDidMount() {  
@@ -41,8 +36,7 @@ class App extends Component {
           this.state._latitude = position.coords.latitude;
           this.state._longitude = position.coords.longitude;             
         }         
-      );
-      
+      );     
   
    
     AsyncStorage.getItem(
@@ -50,8 +44,7 @@ class App extends Component {
     ).then(username => {
       
       if(username != null) {
-        this.setState({
-          
+        this.setState({          
           isRegister: true,
           username: username,
           isLoading: false
@@ -67,15 +60,14 @@ class App extends Component {
             username: username,
             isRegister: false,
             isLoading: false
-
           });   
        
         }
     }).catch(e => {
-       
+
     })
      
-}
+  }
 
   render() {
     const { loading, doLogout, loggedIn, username, email, userId } = this.props
@@ -84,9 +76,8 @@ class App extends Component {
       this.state.username = username ;
     }
  
-    if (this.state.isLoading) {
-      return <View><Text>Loading...</Text></View>;
-      
+    if (this.state.isLoading) {      
+      return <View><Text>Loading...</Text></View>;      
     }
     else{ 
          if (!this.state.isRegister ) {
@@ -94,22 +85,17 @@ class App extends Component {
             
                 return (
                 <View > 
-                    <View style={styles.loginContainer}>
-                        <View style={styles.formContainer}>
-                            <Register/>                      
-                        </View>
-                    </View>
+                     <Register/>                                         
                 </View>
 
           )
-        }else {   
-   
+          }else {     
          
-          return (            
-            <View style = {styles.container} >            
-                <Geolocation style = {styles.map}/>                
-                <Text style = {styles.userName} >Welcome {this.state.username} !</Text> 
-            </View>
+              return (            
+                <View style = {styles.container} >            
+                    <Geolocation style = {styles.map}/>                
+                    <Text style = {styles.userName} >Welcome {this.state.username}</Text> 
+                </View>
           
           )
         }
@@ -144,42 +130,23 @@ const styles = StyleSheet.create ({
     right: 0,
     bottom: 0,
  },
- register: {
-
- },
- location: {
-  flex: 1,
-  alignItems: 'center',
-  marginTop: 50
-},
 });
  
  
 export const Main = connect(
-
 	// inject states to props
   (state: States) => ({
-
     loggedIn: state.user.loggedIn,    
     username: state.user.username,
     email: state.user.email
-
-   
-
 	}),
 	
 	// inject actions to props
   dispatch => ({
-
     doSave: (username) =>
-    dispatch(actions.user.save(username)),
+        dispatch(actions.user.save(username)),
     doLogout: () => dispatch(actions.user.logout())
-    
-    
   }),
- 
-  
-
 )(App)
 
  

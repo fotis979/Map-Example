@@ -125,43 +125,7 @@ const styles = StyleSheet.create ({
         bottom: 10,
         justifyContent: 'flex-end',
         alignItems: 'center',
-    },
-   headerView: {
-    height: '20%',
-    backgroundColor: 'white',
-    alignItems: 'center',
-    },
-    textHeader: {
-        fontSize: 30,
-        color: '#117864',
-        textAlign: 'center',
-        marginTop: 10
-    },
-    mapContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 40,
-        marginTop: '20%',
-        borderWidth: 1,
-        borderColor: '#117864',
-        alignItems: 'center',
-    },
-    buttonStyle: {
-        padding: 10,
-        margin: 5,
-        borderRadius: 15,
-        backgroundColor: '#117864',
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 20
-},
-
-   boldText: {
-      fontSize: 30,
-      color: 'red',
-   },
+    },    
    map: {
     ...StyleSheet.absoluteFillObject,
     },

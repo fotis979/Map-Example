@@ -48,7 +48,7 @@ class App extends Component {
   }
    
   render() {
-    const { loading, doLogin ,username} = this.props
+    const { loading, doRegister ,username} = this.props
 
 		// show only loading indicator if loading state is true
     if (loading) {
@@ -56,9 +56,10 @@ class App extends Component {
     }
 
     return (
-      
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>        
-            
+      <View style={styles.container}>
+
+          <KeyboardAvoidingView behavior="padding"  > 
+
             <TextInput style = {styles.input}
                 placeholder='User name'
                 placeholderTextColor='#fff'
@@ -73,24 +74,23 @@ class App extends Component {
               onChangeText={email => this.setState({ email })}
               value={this.state.email}
             />
+
             <Button  style={styles.buttonContainer} 
-              onPress={() => {
-    
-              
+              onPress={() => {             
                   if (this.state.username.trim() !== "" && this.state.email.trim() !== "" ){
-                    this.state.id = String(Math.floor(Math.random() * 10000) + 1);              
-                    
+                    this.state.id = String(Math.floor(Math.random() * 10000) + 1); 
                     doRegister(this.state.id, this.state.username.trim(), this.state.email.trim(),this.state.location)
-                }
-                else{
+                  }
+                  else{
                     Alert.alert("Please enter the name and email to proceed");
-                }
+                  }
               }}
-            ><Text  style={styles.buttonText}>Register</Text>
-            </Button>
+              ><Text  style={styles.buttonText}>Register</Text>
+            </Button>                         
         
-        
-      </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+
+      </View>
     )
   }
 }
@@ -105,47 +105,40 @@ const styles = StyleSheet.create({
     paddingRight: 7.5,
     paddingTop: 0,
     paddingBottom: 7.5,
-    justifyContent: "center",
-     
-    
-    },
-    input:{
-      height: 40,
-      backgroundColor: '#999',
-      marginBottom: 10,
-      padding: 10,
-      color: '#fff'
+    justifyContent: "center",    
+  },
+  input:{
+    height: 40,
+    backgroundColor: '#999',
+    marginBottom: 10,
+    padding: 10,
+    color: '#fff'
   },
   buttonContainer:{
     backgroundColor: '#2980b6',
     paddingVertical: 15
-},
-buttonText:{
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: '700'
-},
- 
+  },
+  buttonText:{
+     color: '#fff',
+     textAlign: 'center',
+     fontWeight: '700'
+  },
+  
 })
 
  
 
 /**
- * Login screen.
+ * Register screen.
  */
 export const Register = connect(
 	
- 
-  (state: States) => ({
-		
+   (state: States) => ({			 
+      loading: state.app.loading
+   }),
 	 
-    loading: state.app.loading
-	}),
-	
- 
   dispatch => ({
- 
-    doRegister: (id, username, email, location) =>
-      dispatch(actions.user.register(id, username, email, location))
+     doRegister: (id, username, email, location) =>
+        dispatch(actions.user.register(id, username, email, location))
   })
 )(App)

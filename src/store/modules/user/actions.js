@@ -26,7 +26,6 @@ export const register = (userId: string, username: string, email: string , locat
  
      // turn loading animation on
     dispatch(actions.app.loading())
-
      
     setTimeout(() => {
  
@@ -34,8 +33,8 @@ export const register = (userId: string, username: string, email: string , locat
      AsyncStorage.setItem('username', username);
      AsyncStorage.setItem('email', email); 
      AsyncStorage.setItem('loggedIn', 'true'); 
-    
-            fetch("https://a6e6qa6e5f.execute-api.eu-west-3.amazonaws.com/dev/flappaccount", {
+     
+          fetch("https://a6e6qa6e5f.execute-api.eu-west-3.amazonaws.com/dev/flappaccount", {
               method: "POST",
               headers: {
                 Accept: 'application/json',
@@ -43,16 +42,13 @@ export const register = (userId: string, username: string, email: string , locat
               },
               body:  JSON.stringify(data)
           })
-          .then(function(response){ 
-            return response.json();   
+            .then(function(response){ 
+              return response.json();   
           })
-          .then(function(data){ 
-          console.log(data)
+           .then(function(data){ 
+              console.log(data)
           });
-           
- 
-      console.log(JSON.stringify(data));
-      
+         
    
 
         dispatch({
@@ -75,9 +71,6 @@ export const register = (userId: string, username: string, email: string , locat
 }
 
 
-
-
- 
 
  
 
