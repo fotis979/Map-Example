@@ -48,8 +48,8 @@ export const register = (userId: string, username: string, email: string , locat
            .then(function(data){ 
               console.log(data)
           });
-         
-   
+        
+          console.log(JSON.stringify(data));
 
         dispatch({
           type: types.REGISTER,
