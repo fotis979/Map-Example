@@ -1,5 +1,5 @@
-import reducer from './reducer'
-import * as actions from './actions'
+import reducer from "./reducer";
+import * as actions from "./actions";
 
-export const app = { reducer, actions }
-export { AppState } from './reducer'
+export const app = { reducer, actions };
+export { AppState } from "./reducer";

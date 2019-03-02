@@ -1,1 +1,1 @@
-export const SET_LOADING = 'APP/SET_LOADING'
+export const SET_LOADING = "APP/SET_LOADING";

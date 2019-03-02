@@ -1,5 +1,5 @@
-import { UserState, user } from './user'
-import { AppState, app } from './app'
+import { UserState, user } from "./user";
+import { AppState, app } from "./app";
 
 /**
  * Root states.
@@ -7,7 +7,7 @@ import { AppState, app } from './app'
 export type States = {
   app: AppState,
   user: UserState
-}
+};
 
 /**
  * Root reducers.
@@ -15,7 +15,7 @@ export type States = {
 export const reducers = {
   app: app.reducer,
   user: user.reducer
-}
+};
 
 /**
  * Root actions.
@@ -23,6 +23,6 @@ export const reducers = {
 export const actions = {
   app: app.actions,
   user: user.actions
-}
+};
 
-export { app, user }
+export { app, user };

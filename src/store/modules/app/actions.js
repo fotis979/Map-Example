@@ -1,4 +1,4 @@
-import * as types from './constants'
+import * as types from "./constants";
 
 /**
  * Set loading status on/off
@@ -8,5 +8,5 @@ export const loading = (yes: boolean = true) => {
   return {
     type: types.SET_LOADING,
     payload: yes
-  }
-}
+  };
+};

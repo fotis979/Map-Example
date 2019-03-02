@@ -1,5 +1,5 @@
-import { handleActions } from 'redux-actions'
-import { REGISTER, LOGOUT } from './constants'
+import { handleActions } from "redux-actions";
+import { REGISTER, LOGOUT } from "./constants";
 
 export type UserState = {
   loggedIn: boolean,
@@ -8,40 +8,28 @@ export type UserState = {
   email: string,
   latitude: string,
   longitude: string
-
-  
-}
+};
 
 const initialState: UserState = {
   //loggedIn: false,
-  userId: '',
-  username: '',
-  email: '',
-  location: ''
-  
- 
-}
+  userId: "",
+  username: "",
+  email: "",
+  location: ""
+};
 
 export default handleActions(
   {
     [REGISTER]: (state: UserState = initialState, action): UserState => {
-      const p = action.payload
+      const p = action.payload;
       return {
         loggedIn: true,
         userId: p.userId,
         username: p.username,
         email: p.email,
         location: p.location
-        
-        
-      }
-    },
-
-    [LOGOUT]: (): UserState => {
-      return {
-        loggedIn: false
-      }
+      };
     }
   },
   initialState
-)
+);
