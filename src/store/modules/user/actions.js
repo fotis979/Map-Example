@@ -42,9 +42,6 @@ setJSExceptionHandler(errorHandler);
  * @param {string} userId
  * @param {string} username
  * @param {string} email
- * @param {string} latitude
- * @param {string} longitude
- * @param {string} heading
  * @param {string} location
  *
  */
@@ -57,8 +54,8 @@ export const register = (
   // async call
 
   var data = {
-    name: username,
     id: userId,
+    name: username,
     email: email,
     location: location
   };
@@ -72,6 +69,7 @@ export const register = (
       AsyncStorage.setItem("userId", userId);
       AsyncStorage.setItem("username", username);
       AsyncStorage.setItem("email", email);
+      AsyncStorage.setItem("location", location);
       AsyncStorage.setItem("loggedIn", "true");
 
       fetch(

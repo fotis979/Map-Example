@@ -68,7 +68,7 @@ class App_register extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillUpdate() {
     navigator.geolocation.getCurrentPosition(position => {
       const initialPosition = JSON.stringify(position);
       this.state._latitude = position.coords.latitude;
@@ -116,12 +116,19 @@ class App_register extends Component {
                 this.state.email.trim() !== ""
               ) {
                 this.state.id = String(Math.floor(Math.random() * 10000) + 1);
-                doRegister(
-                  this.state.id,
-                  this.state.username.trim(),
-                  this.state.email.trim(),
-                  this.state.location
-                );
+
+                console.log("Location Register " + this.state.location);
+
+                if (this.state.location !== null) {
+                  doRegister(
+                    this.state.id,
+                    this.state.username.trim(),
+                    this.state.email.trim(),
+                    this.state.location
+                  );
+                } else {
+                  Alert.alert("No found Location");
+                }
               } else {
                 Alert.alert("Please enter the name and email to proceed");
               }
