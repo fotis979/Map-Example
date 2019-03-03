@@ -1,6 +1,41 @@
 import * as types from "./constants";
 import { actions } from "../";
 import { AsyncStorage } from "react-native";
+import { setJSExceptionHandler } from "react-native-exception-handler";
+import { Alert } from "react-native";
+import { BackAndroid } from "react-native";
+
+const reporter = error => {
+  // Logic for reporting to devs
+  // Example : Log issues to github issues using github apis.
+  console.log(error); // sample
+};
+
+const errorHandler = (e, isFatal) => {
+  if (isFatal) {
+    reporter(e);
+    Alert.alert(
+      "Unexpected error occurred",
+      `
+        Error: ${isFatal ? "Fatal:" : ""} ${e.name} ${e.message}
+
+        We have reported this to our team ! Please close the app and start again!
+        `,
+      [
+        {
+          text: "Close",
+          onPress: () => {
+            BackAndroid.exitApp();
+          }
+        }
+      ]
+    );
+  } else {
+    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
+  }
+};
+
+setJSExceptionHandler(errorHandler);
 
 /**
  * Sign in.
@@ -39,7 +74,7 @@ export const register = (
       AsyncStorage.setItem("email", email);
       AsyncStorage.setItem("loggedIn", "true");
 
-      /* fetch(
+      fetch(
         "https://a6e6qa6e5f.execute-api.eu-west-3.amazonaws.com/dev/flappaccount",
         {
           method: "POST",
@@ -56,7 +91,7 @@ export const register = (
         .then(function(data) {
           console.log(data);
         });
-      */
+
       console.log(JSON.stringify(data));
 
       dispatch({
@@ -72,16 +107,5 @@ export const register = (
       // turn loading animation off
       dispatch(actions.app.loading(false));
     }, 3000);
-  };
-};
-
-/**
- * Sign out.
- */
-export const logout = () => {
-  // direct/sync call
-  // AsyncStorage.setItem('loggedIn', 'false');
-  return {
-    type: types.LOGOUT
   };
 };
